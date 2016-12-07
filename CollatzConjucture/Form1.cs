@@ -27,7 +27,7 @@ namespace CollatzConjucture
                 input = ~input + 1; // converting value of input to positive if the integer is negative
                 
             }
-            
+
             CollatzConjectureCalc(input); // calling the function and passing input as a value
         }
 
@@ -76,6 +76,42 @@ namespace CollatzConjucture
             return 0;
         }
 
+        //Changing the text color to red
+        private void RedRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            ResultLabel.ForeColor = System.Drawing.Color.Red;
+            InputNumberBox.ForeColor = System.Drawing.Color.Red;
+        }
+
+        //Changing the text color to Green
+        private void GreenRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            ResultLabel.ForeColor = System.Drawing.Color.LightGreen;
+            InputNumberBox.ForeColor = System.Drawing.Color.LightGreen;
+        }
+
+        //Changing the text color to yello
+        private void YelloRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            ResultLabel.ForeColor = System.Drawing.Color.Yellow;
+            InputNumberBox.ForeColor = System.Drawing.Color.Yellow;
+        }
+
+        //Changing the label color to Black
+        private void BackcolorBlack_CheckedChanged(object sender, EventArgs e)
+        {
+            ResultLabel.BackColor = System.Drawing.Color.Black;
+            InputNumberBox.BackColor = System.Drawing.Color.Black;
+
+        }
+
+        //Changing the label color to white
+        private void BackColorWhite_CheckedChanged(object sender, EventArgs e)
+        {
+            ResultLabel.BackColor = System.Drawing.Color.White;
+            InputNumberBox.BackColor = System.Drawing.Color.White;
+        }
+
         //Benchmarking function
         private void CollatzConjectureBenchmark()
         {
@@ -83,7 +119,7 @@ namespace CollatzConjucture
 
             BigInteger result, input=5;   
             var watch = Stopwatch.StartNew();
-            for (counter = 1; counter <= 10000000; counter++) //change the counter before comitting
+            for (counter = 1; counter <= 5000; counter++) //change the counter before comitting
             {
                 result = input;
                 while (result != 1) // loop will run till the result equals 1, after that it will loop as 4 , 2 ,1 so its of no use after 1
