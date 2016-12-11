@@ -39,6 +39,7 @@
             this.LogBackColor = new System.Windows.Forms.Label();
             this.BackcolorBlack = new System.Windows.Forms.RadioButton();
             this.BackColorWhite = new System.Windows.Forms.RadioButton();
+            this.PreciseTiming = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // InputNumberBox
@@ -50,6 +51,7 @@
             this.InputNumberBox.Name = "InputNumberBox";
             this.InputNumberBox.Size = new System.Drawing.Size(267, 67);
             this.InputNumberBox.TabIndex = 0;
+            this.InputNumberBox.Text = "Enter an integer";
             // 
             // ComputeButton
             // 
@@ -71,6 +73,7 @@
             this.ResultLabel.Name = "ResultLabel";
             this.ResultLabel.Size = new System.Drawing.Size(434, 328);
             this.ResultLabel.TabIndex = 2;
+            this.ResultLabel.Text = "Log :";
             // 
             // BenchmarkButton
             // 
@@ -161,11 +164,22 @@
             this.BackColorWhite.UseVisualStyleBackColor = true;
             this.BackColorWhite.CheckedChanged += new System.EventHandler(this.BackColorWhite_CheckedChanged);
             // 
+            // PreciseTiming
+            // 
+            this.PreciseTiming.Location = new System.Drawing.Point(270, 170);
+            this.PreciseTiming.Name = "PreciseTiming";
+            this.PreciseTiming.Size = new System.Drawing.Size(104, 24);
+            this.PreciseTiming.TabIndex = 11;
+            this.PreciseTiming.Text = "Precise Time ";
+            this.PreciseTiming.UseVisualStyleBackColor = true;
+           // this.PreciseTiming.CheckedChanged += new System.EventHandler(this.PreciseTiming_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(458, 557);
+            this.Controls.Add(this.PreciseTiming);
             this.Controls.Add(this.BackColorWhite);
             this.Controls.Add(this.BackcolorBlack);
             this.Controls.Add(this.LogBackColor);
@@ -197,6 +211,7 @@
         private System.Windows.Forms.Label LogBackColor;
         private System.Windows.Forms.RadioButton BackcolorBlack;
         private System.Windows.Forms.RadioButton BackColorWhite;
+        private System.Windows.Forms.CheckBox PreciseTiming;
     }
 }
 

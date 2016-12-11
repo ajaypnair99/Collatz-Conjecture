@@ -50,7 +50,7 @@ namespace CollatzConjucture
 
             ResultLabel.Text = ""; // clearing the log label
 
-
+            var watch = Stopwatch.StartNew();
             while(result!=1 )
             {
                 //Checking if even 
@@ -65,16 +65,63 @@ namespace CollatzConjucture
                 
                 steps++; // incrementing the steps
             }
-           // watch.Stop(); // stopping the watch
+            watch.Stop(); // stopping the watch
 
-            //var elapsedtime = watch.ElapsedMilliseconds; // setting elapsed time to the time taken to execute the steps
+            var elapsedtime = watch.ElapsedMilliseconds; // setting elapsed time to the time taken to execute the steps
 
             ResultLabel.Text += "End Result = "+result; // displaying the result
-            //ResultLabel.Text += "\nElapsed Time =" + elapsedtime; // displaying time elapsed
             ResultLabel.Text += "\nSteps taken = " + steps; // displaying the steps
+            if (PreciseTiming.Checked)
+            {
+                ResultLabel.Text += "\nElapsed Time : " + elapsedtime + " ms";
+            }
+            else
+            {
+                #region precise time
+                if (elapsedtime <= 1)
+                {
+                    ResultLabel.Text += "\nElapsed Time = -"; // displaying time elapsed
+                }
+                else
+                {
+                    if (elapsedtime >= 1000) //checking if elapsed time is more than 100ms 
+                    {
+                        elapsedtime = elapsedtime / 1000; // converting ms to seconds
 
-            return 0;
+                        if (elapsedtime >= 60) //checking if seconds is more then 60
+                        {
+                            elapsedtime = elapsedtime / 60; //converting seconds to minutes
+
+                            if (elapsedtime >= 60)// checking if minutes is more than 60
+                            {
+                                elapsedtime = elapsedtime / 60; // converting minutes to hours
+
+                                ResultLabel.Text += "\nElapsed Time = " + elapsedtime + "hours"; // displaying hours
+
+                            }
+                            else // else for third if
+                            {
+                                ResultLabel.Text += "\nElapsed Time = " + elapsedtime + "minutes"; //displaying minutes
+                            }
+                        }
+                        else // else for second if 
+                        {
+                            ResultLabel.Text += "\nElapsed Time = " + elapsedtime + "seconds"; //displaying seconds
+                        }
+                    }
+                    else // else for first if
+                    {
+                        ResultLabel.Text += "\nElapsed Time = " + elapsedtime + "ms"; //displaying ms
+                    }
+                }
+            }
+            #endregion
+
+            return 0;   
         }
+
+        #region Radio button for colors
+
 
         //Changing the text color to red
         private void RedRadioButton_CheckedChanged(object sender, EventArgs e)
@@ -86,8 +133,8 @@ namespace CollatzConjucture
         //Changing the text color to Green
         private void GreenRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            ResultLabel.ForeColor = System.Drawing.Color.LightGreen;
-            InputNumberBox.ForeColor = System.Drawing.Color.LightGreen;
+            ResultLabel.ForeColor = System.Drawing.Color.Lime;
+            InputNumberBox.ForeColor = System.Drawing.Color.Lime;
         }
 
         //Changing the text color to yello
@@ -111,6 +158,8 @@ namespace CollatzConjucture
             ResultLabel.BackColor = System.Drawing.Color.White;
             InputNumberBox.BackColor = System.Drawing.Color.White;
         }
+
+        #endregion
 
         //Benchmarking function
         private void CollatzConjectureBenchmark()
@@ -141,7 +190,45 @@ namespace CollatzConjucture
             watch.Stop();//stopping the watch
             var elapsedtime = watch.ElapsedMilliseconds; // setting the value of elapsed time 
 
-            ResultLabel.Text += "\nElapsed time : " + elapsedtime;//displaying elapsed time
+            if (PreciseTiming.Checked)
+            {
+                ResultLabel.Text += "\nElapsed time : " + elapsedtime;//displaying elapsed time
+            }
+            #region Precise time
+            else
+            {
+                if (elapsedtime >= 1000) //checking if elapsed time is more than 100ms 
+                {
+                    elapsedtime = elapsedtime / 1000; // converting ms to seconds
+
+                    if (elapsedtime >= 60) //checking if seconds is more then 60
+                    {
+                        elapsedtime = elapsedtime / 60; //converting seconds to minutes
+
+                        if (elapsedtime >= 60)// checking if minutes is more than 60
+                        {
+                            elapsedtime = elapsedtime / 60; // converting minutes to hours
+
+                            ResultLabel.Text += "\nElapsed Time = " + elapsedtime + "hours"; // displaying hours
+
+                        }
+                        else // else for third if
+                        {
+                            ResultLabel.Text += "\nElapsed Time = " + elapsedtime + "minutes"; //displaying minutes
+                        }
+                    }
+                    else // else for second if 
+                    {
+                        ResultLabel.Text += "\nElapsed Time = " + elapsedtime + "seconds"; //displaying seconds
+                    }
+                }
+                else // else for first if
+                {
+                    ResultLabel.Text += "\nElapsed Time = " + elapsedtime + "ms"; //displaying ms
+                }
+            }
+            #endregion
+
             ResultLabel.Text += "\nSteps taken : " + steps; //displaying steps taken
         }
     }
