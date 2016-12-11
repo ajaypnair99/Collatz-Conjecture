@@ -119,7 +119,7 @@ namespace CollatzConjucture
 
             BigInteger result, input=5;   
             var watch = Stopwatch.StartNew();
-            for (counter = 1; counter <= 5000000; counter++) //change the counter before comitting
+            for (counter = 1; counter <= 5000; counter++) //change the counter before comitting
             {
                 result = input;
                 while (result != 1) // loop will run till the result equals 1, after that it will loop as 4 , 2 ,1 so its of no use after 1
