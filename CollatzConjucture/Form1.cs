@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Numerics;
+using System.Threading;
 
 namespace CollatzConjucture
 {
@@ -11,22 +12,29 @@ namespace CollatzConjucture
         {
             InitializeComponent();
         }
-        
 
         BigInteger input,result; // Input takes input , and result is used for calculations
-
 
         //Compute Button
         private void ComputeButton_Click(object sender, EventArgs e)
         {
-            input = BigInteger.Parse(InputNumberBox.Text);// converting the input from the textbox to biginteger
-
+            if (string.IsNullOrEmpty(InputNumberBox.Text))
+            {
+                input = 7;
+                ResultLabel.Text += "Since you didn't enter a number , the default is set to 7";
+            }
+            else
+            {
+                input = BigInteger.Parse(InputNumberBox.Text);// converting the input from the textbox to biginteger
+            }
+            
             //converting input to a postive intger 
             if (input < 0)
             {
                 input = ~input + 1; // converting value of input to positive if the integer is negative
                 
             }
+            
 
             CollatzConjectureCalc(input); // calling the function and passing input as a value
         }
@@ -34,13 +42,16 @@ namespace CollatzConjucture
         //Benchmark Button
         private void BenchmarkButton_Click(object sender, EventArgs e)
         {
-            CollatzConjectureBenchmark(); // calling benchmark function
+            Thread Benchmark = new Thread(new ThreadStart(CollatzConjectureBenchmark));// Thread for Benchmark
+            Benchmark.Start();//Start
+            Benchmark.Abort();//Abort
 
+            //CollatzConjectureBenchmark();
         }
 
-       
         //Collatz Conjecture checking function
-        int CollatzConjectureCalc(BigInteger input)
+        #region Calc
+        public void CollatzConjectureCalc(BigInteger input)
         {
             result = input;// setting the value of result as input
 
@@ -117,51 +128,12 @@ namespace CollatzConjucture
             }
             #endregion
 
-            return 0;   
+            
         }
-
-        #region Radio button for colors
-
-
-        //Changing the text color to red
-        private void RedRadioButton_CheckedChanged(object sender, EventArgs e)
-        {
-            ResultLabel.ForeColor = System.Drawing.Color.Red;
-            InputNumberBox.ForeColor = System.Drawing.Color.Red;
-        }
-
-        //Changing the text color to Green
-        private void GreenRadioButton_CheckedChanged(object sender, EventArgs e)
-        {
-            ResultLabel.ForeColor = System.Drawing.Color.Lime;
-            InputNumberBox.ForeColor = System.Drawing.Color.Lime;
-        }
-
-        //Changing the text color to yello
-        private void YelloRadioButton_CheckedChanged(object sender, EventArgs e)
-        {
-            ResultLabel.ForeColor = System.Drawing.Color.Yellow;
-            InputNumberBox.ForeColor = System.Drawing.Color.Yellow;
-        }
-
-        //Changing the label color to Black
-        private void BackcolorBlack_CheckedChanged(object sender, EventArgs e)
-        {
-            ResultLabel.BackColor = System.Drawing.Color.Black;
-            InputNumberBox.BackColor = System.Drawing.Color.Black;
-
-        }
-
-        //Changing the label color to white
-        private void BackColorWhite_CheckedChanged(object sender, EventArgs e)
-        {
-            ResultLabel.BackColor = System.Drawing.Color.White;
-            InputNumberBox.BackColor = System.Drawing.Color.White;
-        }
-
         #endregion
 
         //Benchmarking function
+        #region Benchmark
         private void CollatzConjectureBenchmark()
         {
             BigInteger counter = 10,steps=0; // setting values of counter and steps
@@ -190,6 +162,7 @@ namespace CollatzConjucture
             watch.Stop();//stopping the watch
             var elapsedtime = watch.ElapsedMilliseconds; // setting the value of elapsed time 
 
+            Form1 f1 = new Form1();
             if (PreciseTiming.Checked)
             {
                 ResultLabel.Text += "\nElapsed time : " + elapsedtime;//displaying elapsed time
@@ -229,7 +202,50 @@ namespace CollatzConjucture
             }
             #endregion
 
-            ResultLabel.Text += "\nSteps taken : " + steps; //displaying steps taken
+            f1.ResultLabel.Text += "\nSteps taken : " + steps; //displaying steps taken
         }
+        #endregion
+
+        //Radio button section
+        #region Radio button for colors
+
+        //Changing the text color to red
+        private void RedRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            ResultLabel.ForeColor = System.Drawing.Color.Red;
+            InputNumberBox.ForeColor = System.Drawing.Color.Red;
+        }
+
+        //Changing the text color to Green
+        private void GreenRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            ResultLabel.ForeColor = System.Drawing.Color.Lime;
+            InputNumberBox.ForeColor = System.Drawing.Color.Lime;
+        }
+
+        //Changing the text color to yello
+        private void YelloRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            ResultLabel.ForeColor = System.Drawing.Color.Yellow;
+            InputNumberBox.ForeColor = System.Drawing.Color.Yellow;
+        }
+
+        //Changing the label color to Black
+        private void BackcolorBlack_CheckedChanged(object sender, EventArgs e)
+        {
+            ResultLabel.BackColor = System.Drawing.Color.Black;
+            InputNumberBox.BackColor = System.Drawing.Color.Black;
+
+        }
+
+        //Changing the label color to white
+        private void BackColorWhite_CheckedChanged(object sender, EventArgs e)
+        {
+            ResultLabel.BackColor = System.Drawing.Color.White;
+            InputNumberBox.BackColor = System.Drawing.Color.White;
+        }
+
+        #endregion
+
     }
 }

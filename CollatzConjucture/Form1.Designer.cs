@@ -26,7 +26,7 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
+        public void InitializeComponent()
         {
             this.InputNumberBox = new System.Windows.Forms.TextBox();
             this.ComputeButton = new System.Windows.Forms.Button();
@@ -51,7 +51,6 @@
             this.InputNumberBox.Name = "InputNumberBox";
             this.InputNumberBox.Size = new System.Drawing.Size(267, 67);
             this.InputNumberBox.TabIndex = 0;
-            this.InputNumberBox.Text = "Enter an integer";
             // 
             // ComputeButton
             // 
@@ -172,7 +171,6 @@
             this.PreciseTiming.TabIndex = 11;
             this.PreciseTiming.Text = "Precise Time ";
             this.PreciseTiming.UseVisualStyleBackColor = true;
-           // this.PreciseTiming.CheckedChanged += new System.EventHandler(this.PreciseTiming_CheckedChanged);
             // 
             // Form1
             // 
@@ -192,7 +190,7 @@
             this.Controls.Add(this.ComputeButton);
             this.Controls.Add(this.InputNumberBox);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Collatz Conjecture";
             this.ResumeLayout(false);
             this.PerformLayout();
 
