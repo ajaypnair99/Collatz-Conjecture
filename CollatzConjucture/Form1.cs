@@ -44,7 +44,7 @@ namespace CollatzConjucture
         {
             Thread Benchmark = new Thread(new ThreadStart(CollatzConjectureBenchmark));// Thread for Benchmark
             Benchmark.Start();//Start
-            Benchmark.Abort();//Abort
+            //Benchmark.Abort();//Abort
 
             //CollatzConjectureBenchmark();
         }
