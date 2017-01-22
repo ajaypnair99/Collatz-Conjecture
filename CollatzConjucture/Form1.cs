@@ -15,13 +15,19 @@ namespace CollatzConjucture
 
         BigInteger input,result; // Input takes input , and result is used for calculations
 
-        //Compute Button
+        #region Compute Button and Benchmark Button
+        /// <summary>
+        /// Triggered when Compute Button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        #region Compute Button
         private void ComputeButton_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(InputNumberBox.Text))
+            if (string.IsNullOrEmpty(InputNumberBox.Text) || InputNumberBox.Text.Contains("Enter an integer"))
             {
                 input = 7;
-                ResultLabel.Text += "Since you didn't enter a number , the default is set to 7";
+                MessageBox.Show("Since you didn't enter a number , the default is set to 7", "Warning",MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
@@ -38,8 +44,15 @@ namespace CollatzConjucture
 
             CollatzConjectureCalc(input); // calling the function and passing input as a value
         }
+        #endregion
 
-        //Benchmark Button
+
+        /// <summary>
+        /// Triggered when Benchmark Button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        #region Benchmark Button
         private void BenchmarkButton_Click(object sender, EventArgs e)
         {
             Thread Benchmark = new Thread(new ThreadStart(CollatzConjectureBenchmark));// Thread for Benchmark
@@ -48,8 +61,15 @@ namespace CollatzConjucture
 
             //CollatzConjectureBenchmark();
         }
+        #endregion
+        #endregion
 
-        //Collatz Conjecture checking function
+
+        #region Conjucture calculator and Benchmark respectively
+        /// <summary>
+        /// This function applies the conjecture on the given number
+        /// </summary>
+        /// <param name="input">the number which is to be passed</param>
         #region Calc
         public void CollatzConjectureCalc(BigInteger input)
         {
@@ -132,7 +152,10 @@ namespace CollatzConjucture
         }
         #endregion
 
-        //Benchmarking function
+
+        /// <summary>
+        /// This benchmarks a set constant range of numbers ; default numbers checked : 5000000
+        /// </summary>
         #region Benchmark
         private void CollatzConjectureBenchmark()
         {
@@ -206,7 +229,15 @@ namespace CollatzConjucture
         }
         #endregion
 
-        //Radio button section
+        #endregion
+
+
+        #region Miscellaneous : Radio button and Form 2 instance checker
+        /// <summary>
+        /// Radio buttons for changing the colors
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         #region Radio button for colors
 
         //Changing the text color to red
@@ -247,5 +278,44 @@ namespace CollatzConjucture
 
         #endregion
 
+
+        /// <summary>
+        /// Checks if the second form is open or not
+        /// </summary>
+        #region Is Form 2 Open
+        Boolean IsForm2Open = false;
+        private void SeriesButton_Click(object sender, EventArgs e)
+        {
+            Form f2 = new Form2();
+            if (IsForm2Open == false)
+            {
+                
+                f2.Show();
+                IsForm2Open = true;
+            }else
+            {
+                MessageBox.Show("One instance is already running", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            f2.FormClosed += new FormClosedEventHandler(Form2_Closed);
+            
+        }
+        #endregion
+
+        /// <summary>
+        /// Handler for Form 2 closed event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        #region Form 2 Closed Handler
+        public void Form2_Closed(object sender , EventArgs e)
+        {
+            IsForm2Open = false;
+        }
+        #endregion
+
+        #endregion
+
     }
 }
+            

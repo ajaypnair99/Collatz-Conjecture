@@ -7,3 +7,4 @@ F:\all things\Codes\C++ codes\VB code\CollatzConjucture\CollatzConjucture\obj\De
 F:\all things\Codes\C++ codes\VB code\CollatzConjucture\CollatzConjucture\obj\Debug\CollatzConjecture.csproj.GenerateResource.Cache
 F:\all things\Codes\C++ codes\VB code\CollatzConjucture\CollatzConjucture\obj\Debug\CollatzConjucture.exe
 F:\all things\Codes\C++ codes\VB code\CollatzConjucture\CollatzConjucture\obj\Debug\CollatzConjucture.pdb
+F:\all things\Codes\C++ codes\VB code\CollatzConjucture\CollatzConjucture\obj\Debug\CollatzConjucture.Form2.resources

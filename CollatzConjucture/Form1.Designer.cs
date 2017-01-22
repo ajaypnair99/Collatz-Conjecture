@@ -40,6 +40,7 @@
             this.BackcolorBlack = new System.Windows.Forms.RadioButton();
             this.BackColorWhite = new System.Windows.Forms.RadioButton();
             this.PreciseTiming = new System.Windows.Forms.CheckBox();
+            this.SeriesButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // InputNumberBox
@@ -172,13 +173,24 @@
             this.PreciseTiming.TabIndex = 11;
             this.PreciseTiming.Text = "Precise Time ";
             this.PreciseTiming.UseVisualStyleBackColor = true;
-           // this.PreciseTiming.CheckedChanged += new System.EventHandler(this.PreciseTiming_CheckedChanged);
+            // 
+            // SeriesButton
+            // 
+            this.SeriesButton.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SeriesButton.Location = new System.Drawing.Point(380, 143);
+            this.SeriesButton.Name = "SeriesButton";
+            this.SeriesButton.Size = new System.Drawing.Size(65, 55);
+            this.SeriesButton.TabIndex = 12;
+            this.SeriesButton.Text = "Series";
+            this.SeriesButton.UseVisualStyleBackColor = true;
+            this.SeriesButton.Click += new System.EventHandler(this.SeriesButton_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(458, 557);
+            this.Controls.Add(this.SeriesButton);
             this.Controls.Add(this.PreciseTiming);
             this.Controls.Add(this.BackColorWhite);
             this.Controls.Add(this.BackcolorBlack);
@@ -212,6 +224,7 @@
         private System.Windows.Forms.RadioButton BackcolorBlack;
         private System.Windows.Forms.RadioButton BackColorWhite;
         private System.Windows.Forms.CheckBox PreciseTiming;
+        private System.Windows.Forms.Button SeriesButton;
     }
 }
 
